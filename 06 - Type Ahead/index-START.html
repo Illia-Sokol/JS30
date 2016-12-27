@@ -28,10 +28,31 @@ fetch(endpoint)
 
 function findMatches(wordToMach, cities) {
   return cities.filter( place => {
+    // console.log(place);
     const regexp = new RegExp(wordToMach, 'gi');
     return place.city.match(regexp) || place.state.match(regexp)
   })
 }
+
+function displayMatches() {
+  // console.log(this.value);
+  const matchArray = findMatches(this.value, cities);
+  const html = matchArray.map( place => {
+    return `
+      <li>
+        <span> ${place.city} ${place.state}</span>
+        <span> ${place.population} </span>
+      </li>
+    `
+  }).join('');
+  suggestions.innerHTML = html;
+}
+
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);
 
 </script>
   </body>
