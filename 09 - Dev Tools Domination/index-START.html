@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()" class="falcon">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log(dogs);
+    console.dir(dogs);
+
+    // Interpolated
+    console.log('Hello, %s. You can called me %s my birthday is %d', 'Ivan', 'Sokol', 26);
+
+    // Styled
+    console.log('%c Do not change this tools', 'color: red; font-size: 20px;');
+
+    // warning!
+    console.warn('Opps this is warn');
+
+    // Error :|
+    console.error('OOO this is error');
+
+    // Info
+    console.info('This is some information!');
+
+    // Testing
+    const p = document.querySelector('p')
+    console.assert( p.classList.contains('falcon'), 'This is false false!!!');
+    console.assert( p.classList.contains('sokol'), 'This is false sokol!!!');
+
+    // clearing
+    console.clear();
+
+    // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
+
+    // Grouping together
+    dogs.forEach( data => {
+      console.group(data.name);
+      console.log(`Dog name ${data.name}`);
+      console.log(`Dog age ${data.age}`);
+      console.log(`It ate ${data.age *5} in it life!`);
+      console.groupEnd(data.name);
+    })
+
+    // counting
+    console.count('Sokol');
+    console.count('Falcon');
+    console.count('Falcon');
+    console.count('Sokol');
+    console.count('Falcon');
+    console.count('Falcon');
+
+    console.clear();
+    // timing
+    console.time('answer time');
+    fetch('https://falcon-recipe-58694.firebaseio.com/recipes.json')
+        .then( data => data.json() )
+        .then( data => {
+          console.timeEnd('answer time');
+          console.log( data )
+        });
+
+    console.table(dogs);
+
+  </script>
+</body>
+</html>
