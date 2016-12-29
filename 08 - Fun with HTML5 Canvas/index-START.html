@@ -14,15 +14,20 @@
   ctx.strokeStyle = '#BADD55';
   ctx.lineJoin = 'round';
   ctx.lineCap = 'round';
+  ctx.lineWidth = 100;
+  // ctx.globalCompositeOperation = 'multiply';
 
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
+  let hex = 0;
+  let direction = true;
 
   function draw(e) {
     if (!isDrawing) return; // stop drawing
-    console.log(e);
+    // console.log(e);
     ctx.beginPath();
+    ctx.strokeStyle = `hsl(${hex}, 100%, 50%)`;
     // start from 
     ctx.moveTo(lastX, lastY);
     // go to
@@ -31,6 +36,22 @@
     // lastX = e.offsetX;
     // lastY = e.offsetY;
     [lastX, lastY] = [e.offsetX, e.offsetY];
+
+    if (hex >= 360) {
+      hex = 0;
+    }
+    hex++;
+    // console.log(hex);
+
+    if ( ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+      direction = !direction;
+    }
+    if (direction) {
+      ctx.lineWidth++;
+    } else {
+      ctx.lineWidth--;
+    }
+
   }
 
   canvas.addEventListener('mousedown', (e) => {
