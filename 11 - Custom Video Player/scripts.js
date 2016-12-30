@@ -17,8 +17,16 @@ function skipFuncton(e) {
 }
 
 function changeValueSpeed(e) {
-    // console.log(this.name);
+    // console.log(this.value);
     video[this.name] = this.value;
+}
+
+function updateVideoLane() {
+    // console.log(video.currentTime);
+    // console.log(video.duration)
+    const timeLine = video.currentTime / video.duration * 100;
+    // console.log(timeLine); 
+    progress__filled.style.flexBasis = `${timeLine}%`;
 }
 
 // Select element
@@ -27,7 +35,8 @@ const progress = document.querySelector('.progress');
 const button = document.querySelector('.toggle');
 const skips = document.querySelectorAll('.player__button');
 const sliders = document.querySelectorAll('.player__slider');
-//listener
+const progress__filled = document.querySelector('.progress__filled');
+//listenerd
 video.addEventListener('click', playVieo);
 video.addEventListener('play', changeButton);
 video.addEventListener('pause', changeButton);
@@ -36,5 +45,7 @@ skips.forEach( skip => {
     skip.addEventListener('click', skipFuncton);   
 })
 sliders.forEach( slider => {
-    slider.addEventListener('click', changeValueSpeed);
+    slider.addEventListener('change', changeValueSpeed);
+    slider.addEventListener('mousemove', changeValueSpeed);
 })
+video.addEventListener('timeupdate', updateVideoLane);
