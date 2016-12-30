@@ -29,6 +29,14 @@ function updateVideoLane() {
     progress__filled.style.flexBasis = `${timeLine}%`;
 }
 
+function mouseVideoUpdate(e) {
+    // console.log(e.offsetX);
+    // console.log('e.offsetX / progress.clientWidth', e.offsetX / progress.clientWidth);
+    // console.log('e.offsetX / progress.clientWidth * video.duration', e.offsetX / progress.clientWidth * video.duration);
+    const newTime = e.offsetX / progress.clientWidth * video.duration;
+    video.currentTime = newTime;
+}
+
 // Select element
 const video = document.querySelector('.viewer');
 const progress = document.querySelector('.progress');
@@ -49,3 +57,9 @@ sliders.forEach( slider => {
     slider.addEventListener('mousemove', changeValueSpeed);
 })
 video.addEventListener('timeupdate', updateVideoLane);
+
+let isClicked = false;
+progress.addEventListener('click', mouseVideoUpdate);
+progress.addEventListener('mousemove', (e) => isClicked && mouseVideoUpdate(e));
+progress.addEventListener('mouseup', () => isClicked = false);
+progress.addEventListener('mousedown', () => isClicked = true);
