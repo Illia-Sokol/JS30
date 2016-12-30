@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Key Detection</title>
+  <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+</head>
+<body>
+<script>
+  const arr = [];
+  const secret = 'sokol';
+
+  window.addEventListener('keyup', (e) => {
+    // console.log('hey', e);
+    arr.push(e.key);
+    console.log(arr);
+
+    // let newArr = arr.slice(-secret.length).join('');
+    // if (newArr.includes(secret)) {
+    //   console.log('DIG DIG!');
+    // }
+
+  // pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+    arr.splice( -secret.length - 1, arr.length - secret.length );
+    console.log(arr);
+    if( arr.join('').includes(secret) ) {
+      console.log('DIG DIG!');
+      cornify_add();
+    }
+  })
+</script>
+</body>
+</html>
