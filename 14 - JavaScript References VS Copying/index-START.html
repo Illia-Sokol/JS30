@@ -57,9 +57,45 @@
 
     // console.clear();
     // with Objects
+    const person = {
+      name: 'Luis',
+      surname: 'Suarez',
+      age: 28
+    }
 
+    // NOT WORKING
+    // const person1 = person;
+    // console.log(person, person1);
+    // person1.name = 'Julia';
+    // console.log(person, person1);
+
+    const person1 = Object.assign({}, person, {surname: 'Rakitich'});
+    console.log(person, person1);
+    person1.name = 'Ivan';
+    console.log(person, person1);
+    // console.dir(Object)
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    const pet = {
+      name: 'Bim',
+      age: 5,
+      color: {
+        head: 'black',
+        body: 'grey'
+      }
+    }
+
+    // NOT WORKING DEEPER COPY
+    // const pet1 = Object.assign({}, pet, {age: 10})
+    // console.log(pet, pet1);
+    // pet1.color.head = 'white';
+    // console.log(pet, pet1);
+
+    // THIS IS WORKING
+    const pet1 = JSON.parse(JSON.stringify(pet));
+    console.log(pet, pet1);
+    pet1.color.head = 'white';
+    console.log(pet, pet1);
 
   </script>
 
