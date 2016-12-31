@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+
+  <script>
+    // start with strings, numbers and booleans
+    let a = 1;
+    let b = a;
+    console.log(a, b);
+    a = 2;
+    console.log(a, b);
+
+    let str = 'Hello';
+    let str1 = str;
+    console.log(str, str1);
+    str = 'New Year';
+    console.log(str, str1);
+
+    console.clear();
+
+    // Let's say we have an array
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    // NOT WORKING!!!
+    // const players1 = players
+    // console.log(players, players1);
+    // players1[1]='ROONEY!!!';
+    // console.log(players, players1);
+
+    // VAR_1
+    // const players1 = Array.from(players);
+    // console.log(players, players1);
+    // players1[1]='GIGGS';
+    // console.log(players, players1);
+
+    // VAR_2
+    // const players1 = players.slice();
+    // console.log(players, players1);
+    // players1[1]='SHOLS';
+    // console.log(players, players1);
+
+    // VAR_3
+    // const players1 = [].concat(players)
+    // console.log(players, players1);
+    // players1[1]='VAN DER SAR';
+    // console.log(players, players1);
+
+    // VAR_4 or use the new ES6 Spread
+    const players1 = [...players];
+    console.log(players, players1);
+    players1[1]='MESSI';
+    console.log(players, players1);
+
+    // console.clear();
+    // with Objects
+
+
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+  </script>
+
+</body>
+</html>
