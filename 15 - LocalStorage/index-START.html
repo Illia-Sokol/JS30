@@ -45,18 +45,27 @@
 
   function showListItem() {
     const newList = items.map( (item, index) => {
-    console.log(item.text)
     return `
       <li>
-        <input type="checkbox" data-index=${index} id='${item+index}' value='${item.text}' ${index.done ? 'checked' : ''}>
-        <label for='${item+index}'>${item.text}</label>
+        <input type="checkbox" data-index=${index} id='${item.text+index}' value='${item.text}' ${item.done ? 'checked' : ''}>
+        <label for='${item.text+index}'>${item.text}</label>
       </li>
       `
     }).join('');
     itemsList.innerHTML = newList;
   }
 
+  function toggleDone(e) {
+    if (!e.target.matches('input')) return;
+    const el = e.target;
+    const index = el.dataset.index;
+    items[index].done = !items[index].done;
+    localStorage.setItem('items', JSON.stringify(items) )
+    showListItem();
+  }
+
   addItems.addEventListener('submit', addList);
+  itemsList.addEventListener('click', toggleDone);
   showListItem();
 </script>
 
