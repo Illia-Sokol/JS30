@@ -28,34 +28,36 @@
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  const items = [];
-
-  addItems.addEventListener('submit', addList);
+  const items = JSON.parse(localStorage.getItem('items')) || [];
 
   function addList(e) {
     e.preventDefault()
-    // console.log(this);
-    // console.log(e)
-    const inputVal = document.querySelector('[name=item]');
-    console.dir(inputVal.value);
-
-    items.push(inputVal.value);
+    const text = document.querySelector('[name=item]').value;
+    const item = {
+      text,
+      done: false
+    }
+    items.push(item);
+    showListItem();
+    localStorage.setItem('items', JSON.stringify(items) )
     addItems.reset();
+  }
+
+  function showListItem() {
     const newList = items.map( (item, index) => {
-      return `
-        <li>
-          <input type="checkbox" id='${item+index}' value='${item}'>
-          <label for='${item+index}'>
-            ${item}
-          </label>
-        </li>
+    console.log(item.text)
+    return `
+      <li>
+        <input type="checkbox" data-index=${index} id='${item+index}' value='${item.text}' ${index.done ? 'checked' : ''}>
+        <label for='${item+index}'>${item.text}</label>
+      </li>
       `
     }).join('');
-
-    console.log(newList);
     itemsList.innerHTML = newList;
   }
 
+  addItems.addEventListener('submit', addList);
+  showListItem();
 </script>
 
 

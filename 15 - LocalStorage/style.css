@@ -59,12 +59,17 @@
     }
 
     .plates input + label:before {
-      content: '⬜️';
+      content: '';
       margin-right: 10px;
+      height: 15px;
+      width: 15px;
+      background: deepskyblue;
+      display: inline-block;
     }
 
     .plates input:checked + label:before {
-      content: '🌮';
+      content: '';
+      background: maroon;
     }
 
     .add-items {
