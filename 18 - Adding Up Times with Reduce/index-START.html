@@ -193,6 +193,18 @@
               }, 0)
 
   console.log('allSeconds', allSeconds);
+
+  const hours = Math.floor(allSeconds / 3600);
+  console.log(hours);
+
+  let hourLet = allSeconds % 3600;
+  const minutes = Math.floor(hourLet / 60);
+  console.log(minutes)
+
+  const seconds = hourLet % 60;
+  console.log(seconds);
+
+  console.log(hours, minutes, seconds);
 </script>
 </body>
 </html>
