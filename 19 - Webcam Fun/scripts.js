@@ -11,6 +11,22 @@ function getVideo() {
             video.src = window.URL.createObjectURL(localMediaStream);
             video.play();
         })
+        .catch(err => {
+            console.error(`Oh NOOO!!!`, err);
+        })
 }
+
+function paintToCanvas() {
+    const width = video.videoWidth;
+    const height = video.videoHeight;
+    canvas.height = height;
+    canvas.width = width;
+    console.log(width, height)
+
+    setInterval( () => {
+        ctx.drawImage(video, 0, 0, width, height);
+    }, 16);
+}
+
 
 getVideo();
