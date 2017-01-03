@@ -190,7 +190,17 @@
                 const [min, sec] = time.split(':')
                 // console.log(min, sec);
                 return allsec += min*60 + +sec;
-              }, 0)
+              }, 0);
+
+  // BOS variant
+  // const allSeconds = times
+  //             .map( time => time.dataset.time)
+  //             .map( (time) => {
+  //               // console.log(time);
+  //               const [min, sec] = time.split(':').map(parseFloat);
+  //               return min*60 + sec;
+  //             })
+  //             .reduce( (allSec, time) => allSec + time, 0);
 
   console.log('allSeconds', allSeconds);
 
