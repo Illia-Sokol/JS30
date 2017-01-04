@@ -7,7 +7,7 @@ const snap = document.querySelector('.snap');
 function getVideo() {
     navigator.mediaDevices.getUserMedia({video: true, audio: false})
         .then(localMediaStream => {
-            console.log(localMediaStream);
+            // console.log(localMediaStream);
             video.src = window.URL.createObjectURL(localMediaStream);
             video.play();
         })
@@ -21,10 +21,15 @@ function paintToCanvas() {
     const height = video.videoHeight;
     canvas.height = height;
     canvas.width = width;
-    console.log(width, height)
+    // console.log(width, height)
 
     return setInterval( () => {
         ctx.drawImage(video, 0, 0, width, height);
+        let pixels = ctx.getImageData(0, 0, width, height);
+        // console.log(pixels);
+        // redEffect(pixels);
+        // ctx.putImageData(pixels, width, height);
+
     }, 16);
 }
 
@@ -37,9 +42,19 @@ function takePhoto() {
     const data = canvas.toDataURL('image/jpeg');
     const link = document.createElement('a');
     link.href = data;
-    link.textContent = 'Download link';
+    // link.textContent = 'Download link';
+    link.innerHTML = `<img src="${data}" alt="handsome man">`
     link.setAttribute('download', 'handsome');
     strip.insertBefore(link, strip.firstChild);
+}
+
+function redEffect(pixels) {
+    for(let i = 0; pixels.data.length; i+=4 ) {
+        pixels.data[i + 0] = pixels.data[i + 0] + 200; //red
+        pixels.data[i + 1] = pixels.data[i + 1] - 50; //green
+        pixels.data[i + 2] = pixels.data[i + 2] * 0.5; //red
+    }
+    return pixels;
 }
 
 getVideo();
