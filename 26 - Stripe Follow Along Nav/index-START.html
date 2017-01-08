@@ -208,6 +208,42 @@
 </style>
 
 <script>
+  const trigger = document.querySelectorAll('ul > li');
+  const nav = document.querySelector('nav');
+  const bg = document.querySelector('.dropdownBackground');
+
+  function showDropdown() {
+    this.classList.add('trigger-enter');
+    setTimeout( () => this.classList.contains('trigger-enter') && this.classList.add('trigger-enter-active'), 150);
+    bg.classList.add('open');
+
+    const dropdown = this.querySelector('.dropdown');
+
+    const dropdownCoord = dropdown.getBoundingClientRect();
+    const navCoord = nav.getBoundingClientRect();
+    
+    const coord = {
+      height: dropdownCoord.height,
+      width: dropdownCoord.width,
+      left: dropdownCoord.left - navCoord.left,
+      top: dropdownCoord.top - navCoord.top
+    }
+
+    console.log(coord);
+
+    bg.style.setProperty('height', `${coord.height}px`);
+    bg.style.setProperty('width', `${coord.width}px`);
+    bg.style.setProperty('transform', `translate(${coord.left}px, ${coord.top}px)`)
+  }
+
+  function hideDropdown() {
+    this.classList.remove('trigger-enter', 'trigger-enter-active');
+    bg.classList.remove('open');
+
+  }
+
+  trigger.forEach( item => item.addEventListener('mouseenter', showDropdown));
+  trigger.forEach( item => item.addEventListener('mouseleave', hideDropdown));
 </script>
 
 </body>
