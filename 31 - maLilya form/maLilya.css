@@ -1,0 +1,89 @@
+.subscription {
+    background: url('http://www.malilya.com/wp-content/uploads/2016/12/%D0%B1%D1%83%D0%BB%D0%BE%D1%87%D0%BA%D0%B8-%D1%81-%D1%82%D1%8B%D0%BA%D0%B2%D0%BE%D0%B9.jpg');
+    max-width: 300px;
+    height:  200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-open .subscription__text {
+    display: none;
+}
+
+.form-open .subscription__email {
+    display: flex;
+}
+
+.subscription *:focus {
+    outline: none;
+}
+
+.subscription__text {
+    display: flex;
+}
+
+.subscription__text,
+.subscription__email {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.subscription__text__title {
+    color: #e40746;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.subscription__text__question,
+input[type="submit"] {
+    cursor: pointer;
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 18px;
+    text-transform: uppercase;
+    padding: 5px;
+    color: #fff;
+    background: rgba(177, 15, 33, 0.8);
+    align-self: center;
+}
+
+.subscription__email {
+    display: none;
+}
+
+.subscription__email__title,
+.subscription__email__value  {
+    background: rgba(225, 225, 225, .5);
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    height: 26px;
+    padding: 0 5px;
+}
+    
+.subscription__email__value {
+    margin: 10px 0;
+}
+    
+.subscription__email__submit {
+    border: none;
+}
+
+.success {
+  display: none;
+}
+
+.final .subscription__text {
+    display: none;
+}
+
+.final .subscription__email {
+    display: none;
+}
+
+.final .success {
+    display: block;
+}

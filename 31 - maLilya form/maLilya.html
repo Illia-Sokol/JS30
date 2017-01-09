@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="maLilya.css">
+</head>
+<body>
+  
+<div class="subscription">
+    <div class="subscription__text">
+        <p class="subscription__text__title">Хочу получать новые рецепты</p>	
+        <p class="subscription__text__question">Подписаться</p>
+    </div>
+	<form class="subscription__email" action="" method="post">
+        <input name="user_name" type="text" required="required" 
+            placeholder="Ваше имя:" class="subscription__email__title">
+        <input name="user_email" type="email" required="required" 
+            placeholder="Ваш e-mail:" class="subscription__email__value">
+        <input type="submit" value="Зарегистрироваться" class="subscription__email__submit">
+    </form>
+    <p class="subscription__text__title success">Успешно!</p>
+</div>
+
+<script>
+(function() {
+    const question = document.querySelector('.subscription__text__question');
+    const email = document.querySelector('.subscription__email');
+    const subscr = document.querySelector('.subscription');
+    const success = document.querySelector('.success');
+
+    question.addEventListener('click', () => {
+            subscr.classList.add('form-open');
+            email.addEventListener('submit', (e) => {
+                // e.preventDefault()
+                subscr.classList.remove('form-open');
+                subscr.classList.add('final');
+            });
+        });
+})();
+</script>
+
+</body>
+</html>
